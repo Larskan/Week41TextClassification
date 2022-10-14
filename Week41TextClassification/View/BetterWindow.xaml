@@ -1,0 +1,209 @@
+﻿<Window x:Class="Week41TextClassification.View.BetterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Week41TextClassification.ViewModel"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="BetterWindow" Height="500" Width="800">
+
+    <Window.DataContext>
+        <local:BetterWindowViewModel/>
+    </Window.DataContext>
+    <Grid Margin="0,0,0,-6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+        </Grid.RowDefinitions>
+                  
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               FontSize="16"
+               Background="ForestGreen"
+               Foreground="White"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               BorderBrush="Black"
+               BorderThickness="2"
+               Content="Bag of Words"
+               Grid.ColumnSpan="5"></Label>
+
+        <ListView x:Name="ListOfWords"
+                  Grid.Row="1"
+                  Grid.RowSpan="11"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="4"
+                  Background="AliceBlue"
+                  BorderBrush="Black"
+                  BorderThickness="1"
+                  ItemsSource="{Binding ListOfWordItems}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="BorderBrush" Value="LightGray"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="175"
+                                    Header="Words"
+                                    DisplayMemberBinding="{Binding Words}"></GridViewColumn>
+                    <GridViewColumn Width="100"
+                                    Header="Repeats"
+                                    DisplayMemberBinding="{Binding Repeats}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button x:Name="Learn"
+                Content="Start Learning"
+                Grid.Column="1"
+                Grid.Row="12"
+                Background="CornflowerBlue"
+                Grid.ColumnSpan="4"
+                Command="{Binding Learn}"></Button>
+        
+        <Label Content="ClassA: Animals"
+               Grid.Row="0"
+               Grid.Column="6"
+               Grid.ColumnSpan="2"
+               FontSize="16"
+               Background="ForestGreen"
+               Foreground="White"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               BorderBrush="Black"
+               BorderThickness="2"></Label>
+
+        <ListView x:Name ="ListOfClassAFiles"
+                  Grid.Row="1"
+                  Grid.RowSpan="11"
+                  Grid.Column="6"
+                  Grid.ColumnSpan="2"
+                  Background="AliceBlue"
+                  BorderBrush="Black"
+                  BorderThickness="1"
+                  ItemsSource="{Binding ListClassA}"
+                  SelectedItem="{Binding Filename}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="BorderBrush" Value="LightGray"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="135"
+                                    Header="Filenames"
+                                    DisplayMemberBinding="{Binding }"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Content="ClassB: Fairy Tales"
+               Grid.Row="0"
+               Grid.Column="9"
+               Grid.ColumnSpan="2"
+               FontSize="16"
+               Background="ForestGreen"
+               Foreground="White"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               BorderBrush="Black"
+               BorderThickness="2"></Label>
+        <ListView x:Name="ListOfClassBFiles"
+                  Grid.Row="1"
+                  Grid.RowSpan="11"
+                  Grid.Column="9"
+                  Grid.ColumnSpan="2"
+                  Background="AliceBlue"
+                  BorderBrush="Black"
+                  BorderThickness="1"
+                  ItemsSource="{Binding ListClassB}"
+                  SelectedItem="{Binding Filename}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="BorderBrush" Value="LightGray" />
+                    <Setter Property="BorderThickness" Value="0,0,0,1" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="135"
+                                    Header="Filenames" 
+                                    DisplayMemberBinding="{Binding }"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="Show words of selected file"
+                Grid.Column="6"
+                Grid.ColumnSpan="2"
+                Grid.Row="12"
+                Background="CornflowerBlue"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Command="{Binding Show}"></Button>
+        <Button Content="Show Class Files"
+                Grid.Column="9"
+                Grid.ColumnSpan="2"
+                Grid.Row="12"
+                Background="CornflowerBlue"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Command="{Binding FilesView}"></Button>
+
+        <Label Grid.Column="5"
+               Grid.Row="0"
+               Background="PaleGoldenrod"
+               Grid.RowSpan="13"
+               ></Label>
+        <Label Grid.Column="8"
+               Grid.Row="0"
+               Background="PaleGoldenrod"
+               Grid.RowSpan="13"
+               ></Label>
+        <Label Grid.Column="0"
+               Grid.Row="0"
+               Background="PaleGoldenrod"
+               Grid.RowSpan="13"></Label>
+        <Label Grid.Column="0"
+               Grid.Row="13"
+               Background="PaleGoldenrod"
+               Grid.ColumnSpan="12"
+               ></Label>
+        <Label Grid.Column="11"
+               Grid.Row="0"
+               Background="PaleGoldenrod"
+               Grid.RowSpan="13"></Label>
+
+
+    </Grid>
+</Window>
