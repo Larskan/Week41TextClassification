@@ -8,7 +8,9 @@ namespace Week41TextClassification.FileIO
 {
     public abstract class FileAdapter
     {
-        private List<string> _fileType; //Changed to List to match both pdf and txt
+        //Changed to List to match both pdf and txt at the same time
+        private List<string> _fileType; 
+        //params is important, unless you like errors
         public FileAdapter(params string[] fileType)
         {
             _fileType = new List<string>();

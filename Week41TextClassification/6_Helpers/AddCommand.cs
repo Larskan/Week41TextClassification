@@ -17,15 +17,9 @@ namespace Week41TextClassification.Helpers
             return true;
         }
 
-        public void Execute(object parameter)
-        {
-            this.actionToInvoke(parameter);
-        }
+        public void Execute(object parameter){this.actionToInvoke(parameter);}
 
         private Action<Object> actionToInvoke = null;
-        public AddCommand(Action<Object> actionToInvoke)
-        {
-            this.actionToInvoke = actionToInvoke;
-        }
+        public AddCommand(Action<Object> actionToInvoke){this.actionToInvoke = actionToInvoke;}
     }
 }

@@ -12,18 +12,6 @@ using Week41TextClassification.Helpers;
 using Week41TextClassification.Leftovers;
 
 namespace Week41TextClassification
-{
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
-    {
-        
-
-        public App()
-        {
-            
-        }
-        
-    }
+{  
+    public partial class App : Application{public App(){}}
 }

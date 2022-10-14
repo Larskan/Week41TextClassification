@@ -135,7 +135,7 @@ namespace Week41TextClassification.Controller
             _knowledge.SetBagOfWords(_bagOfWords);
         }
 
-        private void AddToVectors(string folderName, VectorsBuilder vb)
+        private void AddToVectors(string folderName, VectorsBuilder vectorsBuilder)
         {
             List<string> list;
 
@@ -174,11 +174,11 @@ namespace Week41TextClassification.Controller
                 }
                 if (folderName.Equals("ClassA"))
                 {
-                    vb.AddVectorToA(vector);
+                    vectorsBuilder.AddVectorToA(vector);
                 }
                 else
                 {
-                    vb.AddVectorToB(vector);
+                    vectorsBuilder.AddVectorToB(vector);
                 }
             }
         }
@@ -194,11 +194,11 @@ namespace Week41TextClassification.Controller
                 BuildBagOfWords();
             }
             _vectors = new Vectors();
-            VectorsBuilder vb = new VectorsBuilder();
-            AddToVectors("ClassA", vb);
-            AddToVectors("ClassB", vb);
+            VectorsBuilder vectorsBuilder = new VectorsBuilder();
+            AddToVectors("ClassA", vectorsBuilder);
+            AddToVectors("ClassB", vectorsBuilder);
 
-            _vectors = vb.GetVectors();
+            _vectors = vectorsBuilder.GetVectors();
             _knowledge.SetVectors(_vectors);
         }
 

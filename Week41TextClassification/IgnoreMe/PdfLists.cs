@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Week41TextClassification.Domain
+namespace Week41TextClassification.IgnoreMe
 {
     public class PdfLists
     {

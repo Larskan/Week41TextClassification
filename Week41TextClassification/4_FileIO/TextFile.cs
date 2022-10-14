@@ -21,13 +21,12 @@ namespace Week41TextClassification.FileIO
         public TextFile(params string[] fileType) : base(fileType) 
         {
             _ = PROJECTPATH;
-            //PROJECTPATH = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Classes\\";
         }
         public override List<string> GetAllFileNames(string folderName)
         {
 
             List<string> fileNames = new List<string>();
-            for(int i = 0; i < GetFileType().Count(); i++)
+            for(int i = 0; i < GetFileType().Count; i++)
             {
                 string[] paths = Directory.GetFiles(PROJECTPATH + folderName, "*." + GetFileType()[i]);
 
@@ -48,21 +47,19 @@ namespace Week41TextClassification.FileIO
 
         public override string GetAllTextFromFileA(string path)
         {
+            //placeholder string
             string text = string.Empty;
+            //If Class contains a .pdf file, then use the PdfReader to read it instead of normal txt reading.
             if (path.EndsWith(".pdf"))
             {
-                PdfReader reader = new PdfReader(path);
+                PdfReader reader = new(path);
                 for(int page = 1; page <= reader.NumberOfPages; page++)
                 {
                     text += PdfTextExtractor.GetTextFromPage(reader, page);
                 }
                 reader.Close();
             }
-            else
-            {
-                text = File.ReadAllText(path);
-            }
-
+            else{text = File.ReadAllText(path);}
             return text;
         }
 
@@ -71,18 +68,14 @@ namespace Week41TextClassification.FileIO
             string text = string.Empty;
             if (path.EndsWith(".pdf"))
             {
-                PdfReader reader = new PdfReader(path);
+                PdfReader reader = new(path);
                 for (int page = 1; page <= reader.NumberOfPages; page++)
                 {
                     text += PdfTextExtractor.GetTextFromPage(reader, page);
                 }
                 reader.Close();
             }
-            else
-            {
-                text = File.ReadAllText(path);
-            }
-
+            else{text = File.ReadAllText(path);}
             return text;
         }
     }

@@ -17,13 +17,15 @@ namespace Week41TextClassification.ViewModel
 {
     class BetterWindowViewModel : Bindable
     {
-        public AddCommand Show { get; set; }
-        public AddCommand Learn { get; set; }
-        public AddCommand FilesView { get; set; }
+        
 
         private KnowledgeBuilder kb;
         private BagOfWords bagOfWords;
         private Knowledge knowledge;
+        private WordItem wordItem;
+        private ObservableCollection<string> listClassA = new ObservableCollection<string>();
+        private ObservableCollection<string> listClassB = new ObservableCollection<string>();
+        private ObservableCollection<WordItem> listOfWordItems = new ObservableCollection<WordItem>();
 
         #region attempt at showing Class files before training
         private ObservableCollection<string> _folderCollection; //Where ClassA and ClassB both are
@@ -34,59 +36,44 @@ namespace Week41TextClassification.ViewModel
         #endregion
 
         private long training;
-
         private string filename;
 
+        #region Getter and Setters
+        public AddCommand Show { get; set; }
+        public AddCommand Learn { get; set; }
+        public AddCommand FilesView { get; set; }
         public string Filename
         {
             get { return filename; }
             set { filename = value; PropertyIsChanged(); }
         }
-
         public long Training
         {
             get { return training; }
             set { training = value; PropertyIsChanged(); }
         }
-
-        private WordItem wordItem;
-
         public WordItem WordItem
         {
             get { return wordItem; }
             set { wordItem = value; PropertyIsChanged(); }
         }
-
-        private ObservableCollection<string> listClassA = new ObservableCollection<string>();
-
         public ObservableCollection<string> ListClassA
         {
             get { return listClassA; }
             set { listClassA = value; PropertyIsChanged(); }
         }
-
-        private ObservableCollection<string> listClassB = new ObservableCollection<string>();
-
         public ObservableCollection<string> ListClassB
         {
             get { return listClassB; }
-            set
-            {
-                listClassB = value;
-                PropertyIsChanged();
-            }
+            set{listClassB = value;PropertyIsChanged();}
         }
-
-        private ObservableCollection<WordItem> listOfWordItems = new ObservableCollection<WordItem>();
         public ObservableCollection<WordItem> ListOfWordItems
         {
             get { return listOfWordItems; }
-            set
-            {
-                listOfWordItems = value;
-                PropertyIsChanged();
-            }
+            set { listOfWordItems = value; PropertyIsChanged(); }
         }
+        #endregion
+
 
         #region attempt at showing Class Files before training
         public ObservableCollection<string> FolderCollection
@@ -125,9 +112,7 @@ namespace Week41TextClassification.ViewModel
             //get part of knowledge
             bagOfWords = knowledge.GetBagOfWords();
             ListOfWordItems = new ObservableCollection<WordItem>(bagOfWords.GetEntriesInDictionary());
-
             GetFileNames();
-
         }
 
 
@@ -158,10 +143,7 @@ namespace Week41TextClassification.ViewModel
         //Improved list with just words is added to new BagOfWords object which is used for new ObservableCollection for listview
         private void GetFileInfo(object parameter)
         {
-            if (knowledge == null)
-            {
-                return;
-            }
+            if (knowledge == null){return;}
             //New BagOfWords to contain words
             BagOfWords bagOfWordsLocal = new BagOfWords();
             string text = "";
@@ -178,7 +160,6 @@ namespace Week41TextClassification.ViewModel
                 //Check file with file name in the list of paths, if they match, read file and add to string
                 if (Filename == StringOperations.getFileName(knowledge.GetFileLists().GetB()[j]))
                     text = File.ReadAllText(knowledge.GetFileLists().GetB()[j]);
-
             }
 
             //List of words using Tokenization

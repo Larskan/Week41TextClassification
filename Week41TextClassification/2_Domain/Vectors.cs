@@ -19,9 +19,7 @@ namespace Week41TextClassification.Domain
         }
 
         public void AddVectorToA(List<bool> vector) { _vectorsInA.Add(vector); }
-
         public void AddVectorToB(List<bool> vector) { _vectorsInB.Add(vector); }
-
         public List<List<bool>> GetVectorA() { return _vectorsInA; }
         public List<List<bool>> GetVectorB() { return _vectorsInB; }
     }

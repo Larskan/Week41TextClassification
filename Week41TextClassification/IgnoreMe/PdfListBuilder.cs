@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Week41TextClassification.Domain;
 using Week41TextClassification.FileIO;
+using Week41TextClassification.IgnoreMe;
 
 namespace Week41TextClassification.Leftovers
 {

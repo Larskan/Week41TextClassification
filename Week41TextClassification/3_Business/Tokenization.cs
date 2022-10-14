@@ -15,7 +15,7 @@ namespace Week41TextClassification.Business
 
     {
         //Tokenizer takes a sequence of characters and output a sequence of tokens
-        //You create a list of regex patterns and associate each to a words
+        //You create a list of regex patterns and associate each to a word
         //Then iterate through query text character by character checking if text at current location matches a pattern
         //If it matches a pattern, we create the words, create a new string cutting out the match text and continue checking
         //If it doesnt match a pattern, we create a new string cutting out the current character and check again
@@ -24,16 +24,12 @@ namespace Week41TextClassification.Business
         public static List<string> Tokenize(string originalText)
         {
             List<string> words = new List<string>();
-            string[] tokens = originalText.Split(' ');
-
+            //Splits a string into substring and returns array that contains the substrings
+            string[] tokens = originalText.Split(' '); 
 
             foreach (string token in tokens)
             {
-
-                if (IsAShortWord(token))
-                {
-                    // skip
-                }
+                if (IsAShortWord(token)){}
                 else
                 {
                     string cleanWord = RemovePunctuation(token);
@@ -49,26 +45,21 @@ namespace Week41TextClassification.Business
                     string[] allWords = Regex.Split(cleanWord, "(\\d+|[A-Za-z^'^´^`^’]+)|, ");
                     foreach(string item in allWords)
                     {
-                        //If all spaces are gone
+                        //If all spaces are gone, add the words
                         if(item != "" && item != " ")
                         {
                             words.Add(item);
                         }
-                    }
-                    
+                    }                    
                 }
             }
             return words;
         }
         public static bool IsAShortWord(string token)
         {
-            if (token.Length < SMALLESTWORDLENGTH)
-            {
-                return true;
-            }
+            if (token.Length < SMALLESTWORDLENGTH){return true;}
             return false;
         }
-
         public static string RemovePunctuation(string word)
         {
             //Trim space from words
